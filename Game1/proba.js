@@ -12,8 +12,53 @@ document.getElementById("envoyer-1").addEventListener("click", function () {
             var chiffre = document.getElementById("tab").value;
             tableau.push(chiffre);
             i++;
+        } else {
+            console.log(tableau);
+            document.getElementById("envoyer-2").value = "Generate";
+            document.getElementById("envoyer-2").addEventListener("mouseover", function () { 
+                document.getElementById("moyenne").textContent = moyenne(tableau);
+                document.getElementById("variance").textContent = variance(tableau);
+                document.getElementById("ecart-type").textContent = ecartType(tableau);
+            });
         }
 
     });
 
 });
+
+document.getElementById("reset-1").addEventListener("click", function () {  
+    document.location.reload();
+});
+
+document.getElementById("reset-2").addEventListener("click", function () {  
+    document.location.reload();
+});
+
+function moyenne(tableau) {
+    var sum = 0;
+    var calcul = 0;
+
+    for (var i = 0; i < tableau.length; i++) {
+        sum+= parseInt(tableau[i]);
+    }
+
+    calcul = sum / tableau.length;
+    return calcul;
+}
+
+function variance(tableau){
+    var moy = moyenne(tableau);
+    var sum = 0;
+
+    for (var i = 0; i < tableau.length; i++) {
+        sum += (parseInt(tableau[i]) - moy) * (parseInt(tableau[i]) - moy);
+    }
+
+    sum = sum / tableau.length
+    return sum;
+}
+
+function ecartType(tableau) {
+    var a = variance(tableau);
+    return Math.sqrt(a);
+}
