@@ -1,11 +1,27 @@
+var bool = true;
+
 document.getElementById("valider").addEventListener("click", function () {
-    var taille = document.getElementById("infos").value;
-    afficherTriangle(TrianglePascal(taille));
+    if (bool == true) {
+        var taille = document.getElementById("infos").value;
+        afficherTriangle(TrianglePascal(taille));
+        bool = false;
+    }
 });
 
 document.getElementById("valider-1").addEventListener("click", function () {
-    var taille = document.getElementById("stern").value;
-    afficherStern(Stern(taille));
+    if (bool == true) {
+        var taille = document.getElementById("stern").value;
+        afficherStern(Stern(taille));
+        bool == false;
+    }
+});
+
+document.getElementById("retry").addEventListener("click", function () {
+    document.location.reload();
+});
+
+document.getElementById("retry-1").addEventListener("click", function () {
+    document.location.reload();
 });
 
 function TrianglePascal(taille) {
@@ -55,4 +71,12 @@ function Stern(numero) {
         tab2.push(sum);
     }
     return tab2;
+}
+
+function afficherStern(tab) {
+    
+    for(var i =0; i < tab.length; i++){
+        var u = i + 1;
+        document.getElementById("stern-res").innerHTML += "s" + u + "=" + tab[i] + " ";
+    }
 }
